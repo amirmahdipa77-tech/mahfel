@@ -345,7 +345,7 @@
 </div>
 
 <div class="scrim" id="scrim"></div>
-<aside class="drawer" id="drawer">
+<aside class="drawer" id="drawer" inert aria-hidden="true">
   <div class="drawer__head">
     <h2>تنظیمات اتصال</h2>
     <div class="spacer"></div>
@@ -902,11 +902,17 @@ async function testConnection() {
 
 /* ------------------------------ drawer ------------------------------ */
 function openDrawer() {
-  $('#drawer').classList.add('is-open');
+  const d = $('#drawer');
+  d.classList.add('is-open');
+  d.removeAttribute('inert');
+  d.setAttribute('aria-hidden', 'false');
   $('#scrim').classList.add('is-open');
 }
 function closeDrawer() {
-  $('#drawer').classList.remove('is-open');
+  const d = $('#drawer');
+  d.classList.remove('is-open');
+  d.setAttribute('inert', '');
+  d.setAttribute('aria-hidden', 'true');
   $('#scrim').classList.remove('is-open');
 }
 function openSide() { $('#side').classList.add('is-open'); }
